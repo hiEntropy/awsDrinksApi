@@ -2,8 +2,8 @@ from flask import Flask, request
 from flask_restful import Resource, Api, abort, reqparse
 from Query import get_by_name, get_by_ingredients
 
-app = Flask(__name__)
-api = Api(app)
+application = Flask(__name__)
+api = Api(application)
 
 
 class DrinksByName(Resource):
@@ -37,4 +37,4 @@ api.add_resource(DrinksByName, "/name/<string:name>")
 api.add_resource(DrinksByIngredient, "/ingredient/<string:ingredient>")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    application.run(debug=True)
