@@ -8,7 +8,7 @@ api = Api(application)
 
 class DrinksByName(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument("key", type=str, location="headers", required=True, help="Send a valid key to access this "
+    parser.add_argument("key", type=str, location="headers", required=False, help="Send a valid key to access this "
                                                                                  "endpoint")
 
     def get(self, name):

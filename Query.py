@@ -1,5 +1,5 @@
 from bson.json_util import dumps, loads
-import pymongo
+import pymongo, re
 
 
 def get_connection_to_collection(user_id, password, database, collection):
@@ -14,8 +14,7 @@ def get_by_name(title):
     try:
         creds = get_mongo_creds()
         collection = get_connection_to_collection(*creds)
-        response = collection.find({"title": title})
-        return dumps(response)
+        return dumps(collection.find({"title": re.compile(title, re.IGNORECASE)}))
     except:
         return dumps({"ERROR": "QUERY FAILED"})
 
